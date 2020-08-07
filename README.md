@@ -2,7 +2,6 @@
 
 Vidco is an end to end chat application leveraging the power of *Blockchain*.
 
-
 ### Idea
 
 In the times of covid and our fast paced lives going to a hospital always comes with its own risks attached.
@@ -27,7 +26,7 @@ Issues we are focused to solve
 
 Instructions for starting development server
 
-```bash
+```javascript
     npm run installdev
     npm run installcli
     npm run dev
