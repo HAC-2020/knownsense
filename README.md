@@ -2,12 +2,7 @@
 
 Vidco is an end to end chat application leveraging the power of _Blockchain_.
 
-<<<<<<< HEAD
-### Idea
-=======
 ## Idea
->>>>>>> 9bf6e1d3f0f1ec12bf41312a1ebbc85b067dd49f
-
 In the times of covid and our fast paced lives going to a hospital always comes with its own risks attached.
 
 The pandemic has led everyone to adapt to changes and use technology for carrying out usual offline tasks.
