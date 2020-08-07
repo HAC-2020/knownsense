@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Form, Message, Button } from "semantic-ui-react";
+import axios from "axios";
 
 import AuthForm from "../../components/authForm/authForm";
 
@@ -26,7 +27,17 @@ const DoctorSignup = () => {
       return;
     }
 
-    const docSignup = async () => {};
+    const docSignup = async (data) => {
+      try {
+        const token = await axios.post("/api/v1/doctor/signup", data);
+        // const FBIdToken = `Bearer ${token}`;
+        // localStorage.setItem("FBIdToken", FBIdToken);
+        // axios.defaults.headers.common["Authorization"] = FBIdToken;
+        // const decodedToken = jwtDecode(token);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
     try {
       const body = {
