@@ -1,8 +1,12 @@
+// JWT - Harsh eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjJkOWQ3NDcyYTEzYzI2ZDhhOTYxNjYiLCJpYXQiOjE1OTY4MjQ5NDh9.1jKDwQrIwJEr2gqc4MBdomAtjgTv80Ta3i2JVP56BKE
+// Jwt - pranav eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjJkOWU0YzcyYTEzYzI2ZDhhOTYxNjciLCJpYXQiOjE1OTY4MjUxNjV9.qUjTEp8jAxdQipBjzbNDLnMuEtdoOqPxff_cJZkRRvQ
+
 const express = require("express");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 
 const Doctor = require("../models/Doctor");
+const requireDoctor = require("../middlewares/requiredDoctor");
 
 const router = express.Router();
 

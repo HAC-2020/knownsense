@@ -1,3 +1,5 @@
+// JWT = Shagun eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjJkYTc0ZDkzYWE5ZjIwZTRiMmI0YzYiLCJpYXQiOjE1OTY4Mjc0Njl9.RFh8lhsVuvrudRNQwVID1NgFWMzD7Vno6mIgKAAPpD0
+
 const express = require("express");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
@@ -5,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const requireDoctor = require("../middlewares/requiredDoctor");
 
 const Patient = require("../models/Patient");
+const Doctor = require("../models/Doctor");
 
 const router = express.Router();
 
@@ -49,6 +52,11 @@ router.put("/api/v1/patient/panic/:id", requireDoctor, async (req, res) => {
   } catch (err) {
     return res.status(404).send({ error: err.message });
   }
+});
+
+router.get("/api/v1/getdoctors", async (req, res) => {
+  const docs = await Doctor.find({});
+  res.send(docs);
 });
 
 module.exports = router;

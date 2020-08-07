@@ -91,7 +91,7 @@ const DoctorSignup = () => {
           name="type"
           value={type}
           onChange={(e) => setType(e.target.value)}
-          label="Metamask Public Account"
+          label="Speciality"
           required
         />
         <AuthForm
