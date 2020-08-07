@@ -1,0 +1,14 @@
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  justify-content: space-between;
+  margin: 30px auto;
+}
+.sign-up .title {
+  margin: 10px 0;
+}
+
+.bottomRoute {
+  margin-top: 5%;
+}
