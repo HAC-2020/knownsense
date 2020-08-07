@@ -6,6 +6,9 @@ const server = require(`http`).Server(app);
 const io = require("socket.io")(server);
 const compression = require("compression");
 
+const doctorRoutes = require("./routes/doctorRoutes");
+const patientRoutes = require("./routes/patientRoutes");
+
 //CORS
 app.use((req, res, next) => {
   res.append("Access-Control-Allow-Origin", ["*"]);
@@ -16,6 +19,12 @@ app.use((req, res, next) => {
 
 // COMPRESSION --> GZIP
 app.use(compression());
+
+// Body-parser
+app.use(bodyParser.json());
+
+app.use(doctorRoutes);
+app.use(patientRoutes);
 
 // Mongo Connection
 mongoose.connect(
