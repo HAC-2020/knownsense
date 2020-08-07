@@ -44,7 +44,7 @@ const PatientSignup = () => {
 
   return (
     <div className="sign-up">
-      <h5 className="title">Sign up for Patient</h5>
+      <h2 className="title">Sign up for Patient</h2>
       <Form error={!!errorMsg} className="sign-up-form" onSubmit={handleSubmit}>
         <AuthForm
           type="text"
@@ -83,8 +83,10 @@ const PatientSignup = () => {
           SIGN UP
         </Button>
       </Form>
-      <Link to="/doctor/signin">
-        <h6 className="bottomRoute">I already have an account</h6>
+      <Link to="/patient/signin">
+        <h4 style={{ marginTop: "1rem " }} className="bottomRoute">
+          I already have an account
+        </h4>
       </Link>
     </div>
   );

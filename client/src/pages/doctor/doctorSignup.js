@@ -26,12 +26,7 @@ const DoctorSignup = () => {
     }
 
     try {
-      //   const { user } = await auth.createUserWithEmailAndPassword(
-      //     email,
-      //     password
-      //   );
-
-      //   await createUserProfileDocument(user, { displayName });
+      //
 
       setDisplayName("");
       setEmail("");
@@ -46,7 +41,7 @@ const DoctorSignup = () => {
 
   return (
     <div className="sign-up">
-      <h5 className="title">Sign up for Doctors</h5>
+      <h2 className="title">Sign up for Doctors</h2>
       <Form error={!!errorMsg} className="sign-up-form" onSubmit={handleSubmit}>
         <AuthForm
           type="text"
@@ -69,11 +64,11 @@ const DoctorSignup = () => {
           name="licenceId"
           value={licenceId}
           onChange={(e) => setLicenceId(e.target.value)}
-          label="LicenceId"
+          label="Licence ID"
           required
         />
         <AuthForm
-          type="number"
+          type="text"
           name="account"
           value={account}
           onChange={(e) => setAccount(e.target.value)}
@@ -102,7 +97,9 @@ const DoctorSignup = () => {
         </Button>
       </Form>
       <Link to="/doctor/signin">
-        <h6 className="bottomRoute">I already have an account</h6>
+        <h4 style={{ marginTop: "1rem " }} className="bottomRoute">
+          I already have an account
+        </h4>
       </Link>
     </div>
   );

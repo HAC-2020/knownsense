@@ -28,7 +28,7 @@ const PatientSignin = () => {
 
   return (
     <div className="sign-in">
-      <h5 className="title">Sign in as Patient</h5>
+      <h2 className="title">Sign in as Patient</h2>
 
       <Form error={!!errorMsg} onSubmit={handleSubmit}>
         <AuthForm
@@ -55,7 +55,7 @@ const PatientSignin = () => {
         </div>
       </Form>
       <Link to="/patient/signup">
-        <h6 style={{ marginTop: "10%" }}>I do not have a account</h6>
+        <h4 style={{ marginTop: "10%" }}>I do not have a account</h4>
       </Link>
     </div>
   );

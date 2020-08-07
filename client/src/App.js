@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 //Componenets
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
 
 //Pages
 import home from "./pages/home";
@@ -17,7 +17,7 @@ import PatientSignup from "./pages/patient/patientSignup";
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      {/* <Navbar /> */}
       <BrowserRouter>
         <Switch>
           '
