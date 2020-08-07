@@ -13,11 +13,19 @@ const PatientSignin = () => {
 
   const history = useHistory();
 
+  const patSignin = async () => {};
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      //   await auth.PatientSigninWithEmailAndPassword(email, password);
+      const body = {
+        email: email,
+        password: password,
+      };
+
+      patSignin(body);
+
       setEmail("");
       setPassword("");
       history.push("/patient/dashboard");

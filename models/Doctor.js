@@ -23,6 +23,14 @@ const doctorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  type: {
+    type: String,
+    required: true,
+  },
+  status: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 doctorSchema.pre("save", function (next) {

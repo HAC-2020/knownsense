@@ -11,13 +11,14 @@ const DoctorSignup = () => {
   const [email, setEmail] = useState("");
   const [licenceId, setLicenceId] = useState("");
   const [account, setAccount] = useState("");
+  const [type, setType] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
   const history = useHistory();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
@@ -25,8 +26,18 @@ const DoctorSignup = () => {
       return;
     }
 
+    const docSignup = async () => {};
+
     try {
-      //
+      const body = {
+        email: email,
+        password: password,
+        name: displayName,
+        licenceId: licenceId,
+        publicAccount: account,
+        type: type,
+      };
+      docSignup(body);
 
       setDisplayName("");
       setEmail("");
@@ -72,6 +83,14 @@ const DoctorSignup = () => {
           name="account"
           value={account}
           onChange={(e) => setAccount(e.target.value)}
+          label="Metamask Public Account"
+          required
+        />
+        <AuthForm
+          type="text"
+          name="type"
+          value={type}
+          onChange={(e) => setType(e.target.value)}
           label="Metamask Public Account"
           required
         />

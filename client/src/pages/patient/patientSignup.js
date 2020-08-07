@@ -15,6 +15,8 @@ const PatientSignup = () => {
 
   const history = useHistory();
 
+  const patSignup = async () => {};
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -24,19 +26,20 @@ const PatientSignup = () => {
     }
 
     try {
-      //   const { user } = await auth.createUserWithEmailAndPassword(
-      //     email,
-      //     password
-      //   );
+      const body = {
+        email: email,
+        password: password,
+        name: displayName,
+      };
 
-      //   await createUserProfileDocument(user, { displayName });
+      patSignup(body);
 
       setDisplayName("");
       setEmail("");
       setPassword("");
       setConfirmPassword("");
 
-      history.push("/doctor/dashboard");
+      history.push("/patient/dashboard");
     } catch (error) {
       setErrorMsg(error.message);
     }

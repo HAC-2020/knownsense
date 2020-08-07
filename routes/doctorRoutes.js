@@ -7,7 +7,7 @@ const Doctor = require("../models/Doctor");
 const router = express.Router();
 
 router.post("/api/v1/doctor/signup", async (req, res) => {
-  const { email, password, name, licenceId, publicAccount } = req.body;
+  const { email, password, name, licenceId, publicAccount, type } = req.body;
   try {
     const user = new Doctor({
       email,
@@ -15,6 +15,7 @@ router.post("/api/v1/doctor/signup", async (req, res) => {
       name,
       licenceId,
       publicAccount,
+      type,
     });
     await user.save();
     const token = jwt.sign({ userId: user._id }, "DOCTOR SECRETE KEY");
@@ -41,5 +42,39 @@ router.post("/api/v1/doctor/signin", async (req, res) => {
     return res.status(404).send({ error: "Invalid password or email." });
   }
 });
+
+router.put(
+  "/api/v1/doctor/status/online/:id",
+  requireDoctor,
+  async (req, res) => {
+    const { docId } = req.params;
+    try {
+      const update = { status: true };
+      const status = await Patient.findByIdAndUpdate(docId, update, {
+        new: true,
+      });
+      res.send(status);
+    } catch (err) {
+      return res.status(404).send({ error: err.message });
+    }
+  }
+);
+
+router.put(
+  "/api/v1/doctor/status/ofline/:id",
+  requireDoctor,
+  async (req, res) => {
+    const { docId } = req.params;
+    try {
+      const update = { status: false };
+      const status = await Patient.findByIdAndUpdate(docId, update, {
+        new: true,
+      });
+      res.send(status);
+    } catch (err) {
+      return res.status(404).send({ error: err.message });
+    }
+  }
+);
 
 module.exports = router;

@@ -13,14 +13,22 @@ const DoctorSignin = () => {
 
   const history = useHistory();
 
+  const docSignin = async () => {};
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      //   await auth.DoctorSigninWithEmailAndPassword(email, password);
+      const body = {
+        email: email,
+        password: password,
+      };
+
+      docSignin(body);
+
       setEmail("");
       setPassword("");
-      history.push("/provider/getcustomers");
+      history.push("/doctor/dashboard");
     } catch (error) {
       setErrorMsg(error.message);
     }
