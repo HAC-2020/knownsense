@@ -1,0 +1,123 @@
+footer{
+    background-color: $footer-bkg;
+    padding: 15rem 0 5rem 0;
+}
+.footer{
+    
+    
+
+    &__logo{
+        width: 10rem;
+        padding: 5rem 0 2rem 0;
+
+        &--img{
+            max-width: 100%;
+        }
+    }
+
+    &__base{
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        
+        & > :not(:last-child){
+            margin-bottom: 4rem;
+        }
+
+        &--location{
+            width: 35rem;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-around;
+            align-items: flex-start;
+            margin-right: 2rem;
+
+            &-icon{
+                margin-right: 2rem;
+            }
+
+            &-text{
+
+            }
+        }
+
+        &--contacts{
+            margin-right: 2rem;
+            
+
+            & > :not(:last-child){
+                margin-bottom: 2rem;
+            }
+
+            &-phone{
+                display: flex;
+                &-text{
+                    display: block;
+                }
+
+                &-icon{
+                    display: block;
+                    margin-right: 2rem;
+                }
+            }
+
+        }
+
+        &--list{
+            margin-right: 2rem;
+
+            & > :not(:last-child){
+                margin-bottom: 2rem;
+            }
+
+            & li{
+                list-style-type: none;
+
+            }
+
+            &-box{
+                    
+            }
+        }
+
+        &--social{
+
+            & > :not(:last-child){
+                margin-right: 2rem;
+            }
+
+            &-icon{
+            fill: #fff;
+            width: 3rem;
+            height: 3rem;
+
+                & > :not(:last-child){
+                    margin-right: 2rem;
+                }
+            }
+        }
+
+
+    }
+}
+
+.attribution{
+    text-align: center;
+    margin-top: 4rem;
+
+    & a:link,
+    a:visited{ 
+        text-decoration: none;
+        color:hsl(198, 60%, 50%);
+        cursor: pointer;
+        transition: all .2s ease-out;
+    }
+
+    & a:hover,
+    a:active,
+    a:focus{
+        color:#fff;
+    }
+}

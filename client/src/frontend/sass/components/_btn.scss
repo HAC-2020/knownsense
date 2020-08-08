@@ -1,0 +1,17 @@
+.btn:link,
+.btn:visited{
+    transition: all .2s;
+    backface-visibility: hidden;
+    position: relative;
+}
+
+.btn:hover{
+    transform: translateY(-1.2rem);
+    box-shadow: 0 .4rem .5rem rgba(51, 158, 204,.6);
+}
+
+.btn:active,
+.btn:focus{
+    transform: translateY(-.5rem);
+    box-shadow: 0 .2rem .3rem rgba(51, 158, 204,.2);
+}

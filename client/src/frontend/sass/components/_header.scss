@@ -1,0 +1,97 @@
+.header{
+    background-color: $intro-email;
+    background-image: url(../../images/bg-curvy-desktop.svg);
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: 100% 40%;
+}
+.masthead{
+    
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+
+    &__logo{
+        width: 10rem;
+
+        & img{
+            max-width: 100%;
+        }
+    }
+
+    & nav{
+        font-size: 1.5rem;
+        font-family: 'Raleway', sans-serif;
+        & ul{
+            list-style: none;
+
+            & > :not(:last-child) {
+                margin-right: 2rem;
+            }
+
+            & li{
+                display: inline-block;
+                cursor: pointer;
+
+                &::after{
+                    content: "";
+                    display: block;
+                    position: relative;
+                    width: 100%;
+                    border-bottom: 1px solid #fff;
+                    padding-bottom: .4rem;
+                    transform: scaleX(0);
+                    transition: all .3s ease-out;
+                    transform-origin: left;
+                }
+
+                &:hover::after{
+                    transform: scaleX(1);
+                }
+            }
+            
+        }
+    }
+}
+.intro{
+    padding: 2rem 0 10rem 0;
+    margin: 0 auto;
+    width: 55%;
+
+    &__illus{
+        width: 90%;
+        margin: 0 auto;
+
+        & img{
+            max-width: 100%;
+        }
+    }
+
+    &__text{
+        text-align: center;
+        width: 100%;
+        &--heading{
+            margin: 2rem 0;
+            font-size: 3rem;
+            line-height: 4.5rem;
+        }
+        &--details{
+            width: 80%;
+            font-size: 1.3rem;
+            margin: 0 auto;
+        }
+        &--link{
+            background-image: linear-gradient(to right,hsl(176, 68%, 64%),hsl(198, 60%, 50%));
+            font-size: 1.2rem;
+            border-radius: 5rem;
+            padding: 1rem 5rem;
+            text-decoration: none;
+            color: #fff;
+            box-sizing: border-box;
+            display: inline-block;
+            margin-top: 2rem;
+        }
+    }
+}

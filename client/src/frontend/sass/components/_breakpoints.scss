@@ -1,0 +1,90 @@
+@media screen and (min-width: 1440px) {
+    .page{
+        width: 1100px;
+    }
+}
+@media screen and (max-width: 951px) {
+    .intro__text--heading,
+    .section__productive--text-heading,
+    .section__contact--text-header{
+        font-size: 2.5rem;
+    }
+    .section__contact{
+        width: 90%;
+    }
+    .section__contact--input-email{
+        width: 45%;
+    }
+    .footer__base{
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 700px) {
+    .section__productive--text-heading{
+        width: 100%;
+    }
+    .intro{
+        width: 100%;
+    }
+    .header{
+        background-image: url(../../images/bg-curvy-mobile.svg);
+    }
+    .section__contact{
+        margin: 0;
+        width: 100%;
+    }
+    .testimony__footer{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .testimony__footer--text{
+        margin: 0;
+    }
+}
+@media screen and (max-width: 590px) {
+    .section__cto--row{
+        flex-direction: column;
+    }
+    .section__cto--card{
+        width: 100%;
+    }
+    .section__productive{
+        flex-direction: column;
+    }
+    .section__productive--img{
+        margin-right: 0;
+        margin-bottom: 5rem;
+    }
+    .section__testimony{
+        flex-direction: column;
+    }
+    .section__testimony > :not(:last-child){
+        margin-right: 0;
+        margin-bottom: 2rem;
+    }
+    .section__testimony::before{
+        left: -.5rem;
+    }
+    .testimony__footer{
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .testimony__footer--text{
+        margin-left: 1rem;
+    }
+    .section__contact--input-email{
+        width: 100%;
+    }
+    .section__contact--input-link{
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+    }
+    .footer__base--social{
+        align-self: center;
+    }
+    .footer__base--location{
+        width: 100%;
+    }
+    
+}
