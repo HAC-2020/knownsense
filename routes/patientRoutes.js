@@ -17,7 +17,7 @@ router.post("/api/v1/patient/signup", async (req, res) => {
     const user = new Patient({ email, password, name });
     await user.save();
     const token = jwt.sign({ userId: user._id }, "PATIENT SECRETE KEY");
-    res.send({ token });
+    res.send({ token, user });
   } catch (err) {
     return res.status(422).send(err.message);
   }
@@ -35,7 +35,7 @@ router.post("/api/v1/patient/signin", async (req, res) => {
   try {
     await user.comparePassword(password);
     const token = jwt.sign({ userId: user._id }, "PATIENT SECRETE KEY");
-    res.send({ token });
+    res.send({ token, user });
   } catch (err) {
     return res.status(404).send({ error: "Invalid password or email." });
   }

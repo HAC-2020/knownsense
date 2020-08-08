@@ -8,6 +8,7 @@ const compression = require("compression");
 
 const doctorRoutes = require("./routes/doctorRoutes");
 const patientRoutes = require("./routes/patientRoutes");
+const requestRoutes = require("./routes/requestRoutes");
 
 //CORS
 app.use((req, res, next) => {
@@ -25,6 +26,7 @@ app.use(bodyParser.json());
 
 app.use(doctorRoutes);
 app.use(patientRoutes);
+app.use(requestRoutes);
 
 // Mongo Connection
 mongoose.connect(

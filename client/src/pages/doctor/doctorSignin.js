@@ -1,19 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Form, Message, Button } from "semantic-ui-react";
+import axios from "axios";
+import { AppContext } from "../../context api/Appcontext";
 
 import AuthForm from "../../components/authForm/authForm";
 
 import "../../css/signin.css";
 
 const DoctorSignin = () => {
+  const { setauthenticated } = useContext(AppContext);
+  const { setuser } = useContext(AppContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
   const history = useHistory();
 
-  const docSignin = async () => {};
+  const docSignin = async (data) => {
+    try {
+      const res = await axios.post("/api/v1/doctor/signin", data);
+      const FBIdToken = `Bearer ${res.data.token}`;
+      localStorage.setItem("FBIdToken", FBIdToken);
+      axios.defaults.headers.common["Authorization"] = FBIdToken;
+      setauthenticated(true);
+      setuser(res.data.user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
