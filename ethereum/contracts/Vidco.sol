@@ -1,11 +1,11 @@
 pragma solidity ^0.4.17;
 
-contract Hac {
+contract Vidco {
     address public doctor;
     address public patient;
     bool public paid;
 
-    function Hac() public {
+    function Vidco() public {
         paid = false;
     }
 
@@ -13,16 +13,16 @@ contract Hac {
         require(msg.sender != patient);
         _;
     }
-    
+
     function pay() public payable {
-        patient = msg.sender; 
+        patient = msg.sender;
         require(msg.value > 0.0060 ether);
         paid = true;
     }
 
     function recieve(address doc, uint256 fees) public restricted {
         require(paid == true);
-        doctor = doc; 
+        doctor = doc;
         doctor.transfer(fees);
         paid = false;
         patient.transfer(address(this).balance);
