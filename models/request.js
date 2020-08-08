@@ -5,9 +5,8 @@ const requestSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  email: {
+  email2: {
     type: String,
-    unique: true,
     required: true,
   },
   panic: {
@@ -24,4 +23,4 @@ const requestSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("Request", requestSchema);
+module.exports = mongoose.model("Req", requestSchema);

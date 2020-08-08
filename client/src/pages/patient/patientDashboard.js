@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useContext, useHistory } from "react";
+import React, { useState, useEffect, useContext, useHistory, useCallback } from "react";
 import { Card, Icon, Grid, GridColumn, Button } from "semantic-ui-react";
 import axios from "axios";
 import { AppContext } from "../../context api/Appcontext";
 
-const PatientDashboard = () => {
+const PatientDashboard = (props) => {
   const [docs, setDocs] = useState([]);
+  const { user } = useContext(AppContext);
 
   const getDocs = async () => {
     try {
       const res = await axios.get("/api/v1/getdoctors");
-      // console.log(res.data);
       setDocs(res.data);
     } catch (error) {
       console.log(error);
@@ -20,10 +20,65 @@ const PatientDashboard = () => {
     getDocs();
   }, []);
 
+  const requestdoc = async (docId, I) => {
+    try {
+      console.log(user);
+      const res = await axios.post(`/api/v1/requests/${docId}`, {
+        name: user.name,
+        email2: user.email,
+        panic: user.panic,
+        docId: docId,
+      });
+      console.log(res)
+      document.getElementById(`reqbtn${I}`).style.display = 'none';
+      document.getElementById(`cancelbtn${I}`).style.display = 'block';
+      const join = document.getElementById(`joinbtn${I}`);
+      var i;
+      while (res.data._id === undefined) {
+        console.log('waiting');
+      }
+      for (i = 0; i < 50; i++) {
+        setTimeout(async () => {
+          try {
+            var newdata = await axios.get(`/api/v1/request/${res.data._id}`);
+            if (newdata.data.session !== 'NO') {
+              join.style.display = 'block';
+              document.getElementById(`cancelbtn${I}`).style.display = 'none';
+              join.addEventListener('click', () => {
+                //Logic before joining meeting here ...
+
+
+
+                //After Successfull execution run this code...
+                window.open('http://localhost:3000' + newdata.data.session, '_blank');
+                join.style.display = 'none';
+                document.getElementById(`reqbtn${I}`).style.display = 'block';
+              })
+            }
+          } catch (err) {
+            console.log(err);
+          }
+        }, i * 5000)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const cancelreq = async (docId, I) => {
+    try {
+      await axios.delete(`/api/v1/requests/${docId}`);
+      document.getElementById(`reqbtn${I}`).style.display = 'block';
+      document.getElementById(`cancelbtn${I}`).style.display = 'none';
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   console.log(docs);
 
   const docsList = () =>
-    docs.map((doc) => {
+    docs.map((doc, i) => {
       return (
         <div key={doc._id} style={{ marginTop: "4%" }}>
           <Grid>
@@ -41,9 +96,21 @@ const PatientDashboard = () => {
                     <Card.Header content={doc.name} />
                     <Card.Description content={doc.type} />
                     <div style={{ marginTop: "2px" }} className="ui">
-                      <Button floated="right" basic color="green">
-                        Request
+                      <div id={'reqbtn' + i}>
+                        <Button floated="right" onClick={() => requestdoc(doc._id, i)} basic color="green">
+                          Request
                       </Button>
+                      </div>
+                      <div id={"cancelbtn" + i} style={{ display: 'none' }}>
+                        <Button floated="right" onClick={() => cancelreq(doc._id, i)} basic color="red">
+                          Cancel
+                      </Button>
+                      </div>
+                      <div id={"joinbtn" + i} style={{ display: 'none' }}>
+                        <Button floated="right" basic color="blue">
+                          Join
+                      </Button>
+                      </div>
                     </div>
                   </Card.Content>
                 </Card>

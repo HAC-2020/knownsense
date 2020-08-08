@@ -19,7 +19,7 @@ const PatientSignin = () => {
 
   const patSignin = async (data) => {
     try {
-      const res = await axios.post("/api/v1/patient/signup", data);
+      const res = await axios.post("/api/v1/patient/signin", data);
       const FBIdToken = `Bearer ${res.data.token}`;
       localStorage.setItem("FBIdToken", FBIdToken);
       axios.defaults.headers.common["Authorization"] = FBIdToken;
