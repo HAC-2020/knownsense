@@ -28,8 +28,8 @@ Issues we are focused to solve
 Instructions for starting development server
 
 ```javascript
-    npm run installdev
-    npm run installcli
+    npm run install dev
+    npm run install cli
     npm run dev
     open localhost:3000 on browser
 ```
