@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, useHistory } from "react";
 import { Card, Icon, Grid, GridColumn, Button } from "semantic-ui-react";
 import axios from "axios";
+import { AppContext } from "../../context api/Appcontext";
 
 const PatientDashboard = () => {
   const [docs, setDocs] = useState([]);
@@ -54,10 +55,10 @@ const PatientDashboard = () => {
                     <Icon color="green" name="circle" />
                   </div>
                 ) : (
-                  <div>
-                    <Icon color="red" name="circle" />
-                  </div>
-                )}
+                    <div>
+                      <Icon color="red" name="circle" />
+                    </div>
+                  )}
               </Grid.Column>
             </Grid.Row>
           </Grid>

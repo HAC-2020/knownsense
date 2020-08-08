@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Form, Message, Button } from "semantic-ui-react";
+import axios from "axios";
+import { AppContext } from "../../context api/Appcontext";
 
 import AuthForm from "../../components/authForm/authForm";
 
 import "../../css/signup.css";
 
 const PatientSignup = () => {
+  const { setuser } = useContext(AppContext);
+  const { setauthenticated } = useContext(AppContext);
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +19,20 @@ const PatientSignup = () => {
 
   const history = useHistory();
 
-  const patSignup = async () => {};
+
+
+  const patSignup = async (data) => {
+    try {
+      const res = await axios.post("/api/v1/patient/signup", data);
+      const FBIdToken = `Bearer ${res.data.token}`;
+      localStorage.setItem("FBIdToken", FBIdToken);
+      axios.defaults.headers.common["Authorization"] = FBIdToken;
+      setauthenticated(true);
+      setuser(res.data.user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
