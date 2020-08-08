@@ -1,0 +1,58 @@
+.section__contact{
+    transform: translateY(10rem);
+    z-index: 100;
+    position: relative;
+    box-sizing: border-box;
+
+    background-color: hsl(217, 28%, 15%);
+    width: 70%;
+    margin: 0 auto;
+    padding: 2rem 4rem;
+    box-shadow: .6rem .6rem .4rem rgba(0,0,0, .1);
+    border-radius: .6rem;
+
+
+    &--text{
+        text-align: center;
+        margin: 2rem 0;
+
+        &-header{
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        &-body{
+
+        }
+    }
+
+    &--input{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+
+        &-email{
+            width: 60%;
+            border-radius: 4rem;
+            padding: 1rem 2rem;
+            border: 0;
+            outline: none;
+            margin-bottom: 1rem;
+
+            &::placeholder{
+                color: #777;
+            }
+        }
+
+        &-link{
+            margin-bottom: 1rem;
+            text-decoration: none;
+            color: #fff;
+            background-color: hsl(198, 60%, 50%);
+            padding: 1rem 2.5rem;
+            margin-left: 2rem;
+            border-radius: 4rem;
+            display: block;
+        }
+    }
+}

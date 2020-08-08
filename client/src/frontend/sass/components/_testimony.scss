@@ -1,0 +1,59 @@
+.section__testimony{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 10rem;
+    position: relative;
+
+    & > :not(:last-child){
+        margin-right: 2rem;
+    }
+
+    &::before{
+        content: "“";
+        display: block;
+        position: absolute;
+        font-family: sans-serif;
+        color: hsl(176, 68%, 64%);
+        font-size: 16rem;
+        top: -7rem;
+        left: -1.6rem;
+    }
+}
+.testimony{
+    flex: 1;
+    background-color: $testi-bkg;
+    padding: 3rem 2rem 2rem 2rem;
+    box-shadow: 0.5rem 0.5rem 0.6rem rgba($testi-bkg, .8);
+
+    &__text{
+        margin-bottom: 2rem;
+    }
+
+    &__footer{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: center;
+
+        &--img{
+            width: 3rem;
+            border-radius: 100%;
+        }
+
+        &--text{
+            margin-left: 1rem;
+
+            &-username{
+                font-weight: bold;
+            }
+
+            &-job{
+                font-size: 1rem;
+            }
+        }
+    }
+    
+}
