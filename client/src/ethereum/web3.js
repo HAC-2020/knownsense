@@ -4,6 +4,7 @@ let provider;
 
 if (typeof window !== "undefined" && typeof window.web3 !== "undefined") {
   provider = window.web3.currentProvider;
+  window.ethereum.enable();
 } else {
   provider = new Web3.providers.HttpProvider(
     "https://rinkeby.infura.io/v3/53187f1aefc74058b52ecd2ccba8f20b"

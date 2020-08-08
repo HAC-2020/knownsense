@@ -6,7 +6,10 @@ import { v4 as uuidv4 } from "uuid";
 
 const DoctorDashboard = (props) => {
   const { user } = useContext(AppContext);
+  console.log("user", user);
   const [Docs, setDocs] = useState([]);
+  const [status, setStatus] = useState(user.status);
+
   const id = `/api/v1/requests/${user._id}`;
   console.log(id);
   const getDocs = async () => {
@@ -35,6 +38,24 @@ const DoctorDashboard = (props) => {
       props.history.push(`/joincall/${uid}`);
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const online = async () => {
+    try {
+      // await axios.put(`/api/v1/doctor/status/online/${user._id}`);
+      setStatus(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const offline = async () => {
+    try {
+      // await axios.put(`/api/v1/doctor/status/offline/${user._id}`);
+      setStatus(false);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -71,6 +92,15 @@ const DoctorDashboard = (props) => {
   return (
     <div>
       <h2 style={{ marginTop: "4rem", textAlign: "center" }}>Requests</h2>
+      {status ? (
+        <Button onClick={offline} style={{ marginLeft: "5rem" }} positive>
+          Go Offline
+        </Button>
+      ) : (
+        <Button onClick={online} style={{ marginLeft: "5rem" }} negative>
+          Go Online
+        </Button>
+      )}
       <div style={{ marginTop: "2rem" }}>{docsList()}</div>
     </div>
   );

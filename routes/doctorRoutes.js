@@ -47,38 +47,30 @@ router.post("/api/v1/doctor/signin", async (req, res) => {
   }
 });
 
-router.put(
-  "/api/v1/doctor/status/online/:id",
-  requireDoctor,
-  async (req, res) => {
-    const { docId } = req.params;
-    try {
-      const update = { status: true };
-      const status = await Patient.findByIdAndUpdate(docId, update, {
-        new: true,
-      });
-      res.send(status);
-    } catch (err) {
-      return res.status(404).send({ error: err.message });
-    }
+router.put("/api/v1/doctor/status/online/:id", async (req, res) => {
+  const { docId } = req.params;
+  try {
+    const update = { status: true };
+    const status = await Patient.findByIdAndUpdate(docId, update, {
+      new: true,
+    });
+    res.send(status);
+  } catch (err) {
+    return res.status(404).send({ error: err.message });
   }
-);
+});
 
-router.put(
-  "/api/v1/doctor/status/ofline/:id",
-  requireDoctor,
-  async (req, res) => {
-    const { docId } = req.params;
-    try {
-      const update = { status: false };
-      const status = await Patient.findByIdAndUpdate(docId, update, {
-        new: true,
-      });
-      res.send(status);
-    } catch (err) {
-      return res.status(404).send({ error: err.message });
-    }
+router.put("/api/v1/doctor/status/offline/:id", async (req, res) => {
+  const { docId } = req.params;
+  try {
+    const update = { status: false };
+    const status = await Patient.findByIdAndUpdate(docId, update, {
+      new: true,
+    });
+    res.send(status);
+  } catch (err) {
+    return res.status(404).send({ error: err.message });
   }
-);
+});
 
 module.exports = router;

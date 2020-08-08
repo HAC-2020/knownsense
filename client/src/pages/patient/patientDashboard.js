@@ -8,6 +8,8 @@ import React, {
 import { Card, Icon, Grid, GridColumn, Button } from "semantic-ui-react";
 import axios from "axios";
 import { AppContext } from "../../context api/Appcontext";
+import vidco from "../../ethereum/vidco";
+import web3 from "../../ethereum/web3";
 
 const PatientDashboard = (props) => {
   const [docs, setDocs] = useState([]);
@@ -21,6 +23,8 @@ const PatientDashboard = (props) => {
       console.log(error);
     }
   };
+
+  web3.eth.getAccounts().then(console.log);
 
   useEffect(() => {
     getDocs();
@@ -50,9 +54,13 @@ const PatientDashboard = (props) => {
             if (newdata.data.session !== "NO") {
               join.style.display = "block";
               document.getElementById(`cancelbtn${I}`).style.display = "none";
-              join.addEventListener("click", () => {
+              join.addEventListener("click", async () => {
                 //Logic before joining meeting here ...
-
+                const accounts = await web3.eth.getAccounts();
+                await vidco.methods.pay().send({
+                  from: accounts[0],
+                  value: web3.utils.toWei("0.0061"), // 1hr Rs.180
+                });
                 //After Successfull execution run this code...
                 window.open(
                   "http://localhost:3000" + newdata.data.session,
