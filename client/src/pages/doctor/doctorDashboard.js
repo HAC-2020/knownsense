@@ -1,6 +1,6 @@
 import React, { useHistory, useContext, useState, useEffect } from "react";
 import { AppContext } from "../../context api/Appcontext";
-import { Card, Icon, Grid, GridColumn, Button } from "semantic-ui-react";
+import { Card, Button } from "semantic-ui-react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
