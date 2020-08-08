@@ -16,7 +16,7 @@ contract Vidco {
 
     function pay() public payable {
         patient = msg.sender;
-        require(msg.value > 0.0060 ether);
+        require(msg.value > 0.0010 ether);
         paid = true;
     }
 
