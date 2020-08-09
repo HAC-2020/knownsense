@@ -62,12 +62,9 @@ const PatientDashboard = (props) => {
                   value: web3.utils.toWei("0.0061"), // 1hr Rs.180
                 });
                 //After Successfull execution run this code...
-                window.open(
-                  "http://localhost:3000" + newdata.data.session,
-                  "_blank"
-                );
+                props.history.push(newdata.data.session);
                 join.style.display = "none";
-                document.getElementById(`reqbtn${I}`).style.display = "block";
+                // document.getElementById(`reqbtn${I}`).style.display = "block";
               });
             }
           } catch (err) {
