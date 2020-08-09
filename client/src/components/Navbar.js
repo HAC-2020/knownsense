@@ -29,11 +29,14 @@ export default function Navbar() {
         <a class="nav-link" href="#">Dashboard</a>
       </li> */}
           {user._id ? (
-            <Button onClick={logout} negative class="nav-item">
-              <a class="nav-link" href="#">
-                Logout
-              </a>
-            </Button>
+            <a
+              onClick={logout}
+              class="nav-link btn btn-outline-light"
+              style={{ color: "white" }}
+              href="#"
+            >
+              Logout
+            </a>
           ) : null}
         </ul>
       </div>
