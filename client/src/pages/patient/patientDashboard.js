@@ -30,7 +30,7 @@ const PatientDashboard = (props) => {
     getDocs();
   }, []);
 
-  const requestdoc = async (docId, I) => {
+  const requestdoc = async (docId, publicAccount, I) => {
     try {
       console.log(user);
       const res = await axios.post(`/api/v1/requests/${docId}`, {
@@ -57,7 +57,7 @@ const PatientDashboard = (props) => {
               join.addEventListener("click", async () => {
                 //Logic before joining meeting here ...
                 const accounts = await web3.eth.getAccounts();
-                await vidco.methods.pay().send({
+                await vidco.methods.pay(publicAccount).send({
                   from: accounts[0],
                   value: web3.utils.toWei("0.0061"), // 1hr Rs.180
                 });
@@ -124,7 +124,9 @@ const PatientDashboard = (props) => {
                       <div id={"cancelbtn" + i} style={{ display: "none" }}>
                         <Button
                           floated="right"
-                          onClick={() => cancelreq(doc._id, i)}
+                          onClick={() =>
+                            cancelreq(doc._id, doc.publicAccount, i)
+                          }
                           basic
                           color="red"
                         >

@@ -47,7 +47,7 @@ export class videocall extends Component {
             const ammount = (total - temp) * 3;
             //Before Closing Meeting logic here ....  This.state.temp has current call time...
             const accounts = await web3.eth.getAccounts();
-            await vidco.methods.recieve(accounts[0], temp).send({
+            await vidco.methods.recieve(temp).send({
               from: accounts[0],
             });
             stream.getTracks().forEach(function (track) {
@@ -109,15 +109,15 @@ export class videocall extends Component {
   extend = async () => {
     //Extened Call Duration logic here ...
     const accounts = await web3.eth.getAccounts();
-    await vidco.methods.pay().send({
+    await vidco.methods.addOn().send({
       from: accounts[0],
       value: web3.utils.toWei("0.002"), // 20min Rs.60
     });
     //After Successfull extention run bellow code ...
     const currtime = this.state.temp;
     this.setState({
-      total: currtime + 60,
-      temp: currtime + 60,
+      total: currtime + 20,
+      temp: currtime + 20,
     });
   };
 
