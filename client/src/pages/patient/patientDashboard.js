@@ -62,10 +62,7 @@ const PatientDashboard = (props) => {
                   value: web3.utils.toWei("0.0061"), // 1hr Rs.180
                 });
                 //After Successfull execution run this code...
-                window.open(
-                  "http://localhost:3000" + newdata.data.session,
-                  "_blank"
-                );
+                props.history.push(newdata.data.session);
                 join.style.display = "none";
                 document.getElementById(`reqbtn${I}`).style.display = "block";
               });
@@ -114,7 +111,7 @@ const PatientDashboard = (props) => {
                       <div id={"reqbtn" + i}>
                         <Button
                           floated="right"
-                          onClick={() => requestdoc(doc._id, i)}
+                          onClick={() => requestdoc(doc._id, doc.publicAccount, i)}
                           basic
                           color="green"
                         >
@@ -125,7 +122,7 @@ const PatientDashboard = (props) => {
                         <Button
                           floated="right"
                           onClick={() =>
-                            cancelreq(doc._id, doc.publicAccount, i)
+                            cancelreq(doc._id, i)
                           }
                           basic
                           color="red"
@@ -149,10 +146,10 @@ const PatientDashboard = (props) => {
                     <Icon color="green" name="circle" />
                   </div>
                 ) : (
-                  <div>
-                    <Icon color="red" name="circle" />
-                  </div>
-                )}
+                    <div>
+                      <Icon color="red" name="circle" />
+                    </div>
+                  )}
               </Grid.Column>
             </Grid.Row>
           </Grid>
