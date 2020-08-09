@@ -10,7 +10,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\" \"peerjs --port 3001\"",
     "installdev": "npm install && npm install -g peerjs",
     "installcli": "cd client && npm install",
-    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "heroku-postbuild": "npm install -g peerjs && cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "repository": {
     "type": "git",
