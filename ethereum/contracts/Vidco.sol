@@ -4,25 +4,28 @@ contract Vidco {
     address public doctor;
     address public patient;
     bool public paid;
+    bool public firstPayment;
 
     function Vidco() public {
         paid = false;
+        firstPayment = false;
     }
 
-    modifier restricted() {
-        require(msg.sender != patient);
-        _;
-    }
-
-    function pay() public payable {
+    function pay(address docId) public payable {
         patient = msg.sender;
+        doctor = docId;
         require(msg.value > 0.0010 ether);
         paid = true;
+        firstPayment = true;
     }
 
-    function recieve(address doc, uint256 fees) public restricted {
-        require(paid == true);
-        doctor = doc;
+    function addOn() public payable {
+        require(firstPayment == true);
+        require(msg.value > 0.0010 ether);
+    }
+
+    function recieve(uint256 fees) public {
+        require(firstPayment == true);
         doctor.transfer(fees);
         paid = false;
         patient.transfer(address(this).balance);
