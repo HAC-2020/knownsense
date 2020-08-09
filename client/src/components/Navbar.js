@@ -4,7 +4,9 @@ import { Button } from "semantic-ui-react";
 
 export default function Navbar() {
   const { user } = useContext(AppContext);
-  const logout = {};
+  const logout = () => {
+    window.location.reload();
+  };
   return (
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
       <a class="navbar-brand" href="#">

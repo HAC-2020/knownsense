@@ -15,7 +15,7 @@ export class videocall extends Component {
     loadinOut: false,
   };
   componentDidMount() {
-    const socket = io("http://127.0.0.1:5000");
+    const socket = io();
     const videoGrid = document.getElementById("video-grid");
     const myPeer = new Peer(undefined, {
       host: "/",
