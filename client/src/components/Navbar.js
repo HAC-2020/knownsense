@@ -29,7 +29,7 @@ export default function Navbar() {
         <a class="nav-link" href="#">Dashboard</a>
       </li> */}
           {user._id ? (
-            <Button onClick={logout} secondary class="nav-item">
+            <Button onClick={logout} negative class="nav-item">
               <a class="nav-link" href="#">
                 Logout
               </a>

@@ -11,6 +11,8 @@ export class videocall extends Component {
     time: Date.now(),
     temp: 60,
     total: 60,
+    loadingExt: false,
+    loadinOut: false,
   };
   componentDidMount() {
     const socket = io("http://127.0.0.1:5000");
@@ -43,17 +45,23 @@ export class videocall extends Component {
         document
           .getElementById("closebut")
           .addEventListener("click", async () => {
-            const { total, temp } = this.state;
-            const ammount = (total - temp) * 3;
-            //Before Closing Meeting logic here ....  This.state.temp has current call time...
-            const accounts = await web3.eth.getAccounts();
-            await vidco.methods.recieve(temp).send({
-              from: accounts[0],
-            });
-            stream.getTracks().forEach(function (track) {
-              track.stop();
-            });
-            this.props.history.push("/");
+            try {
+              this.setState({ loadingOut: true });
+              const { total, temp } = this.state;
+              const ammount = (total - temp) * 3;
+              //Before Closing Meeting logic here ....  This.state.temp has current call time...
+              const accounts = await web3.eth.getAccounts();
+              await vidco.methods.recieve(temp).send({
+                from: accounts[0],
+              });
+              stream.getTracks().forEach(function (track) {
+                track.stop();
+              });
+              this.props.history.push("/");
+            } catch (err) {
+              console.log(err);
+            }
+            this.setState({ loadingOut: false });
           });
       });
 
@@ -107,38 +115,58 @@ export class videocall extends Component {
   }
 
   extend = async () => {
-    //Extened Call Duration logic here ...
-    const accounts = await web3.eth.getAccounts();
-    await vidco.methods.addOn().send({
-      from: accounts[0],
-      value: web3.utils.toWei("0.002"), // 20min Rs.60
-    });
-    //After Successfull extention run bellow code ...
-    const currtime = this.state.temp;
-    this.setState({
-      total: currtime + 20,
-      temp: currtime + 20,
-    });
+    try {
+      this.setState({ loadingExt: true });
+      //Extened Call Duration logic here ...
+      const accounts = await web3.eth.getAccounts();
+      await vidco.methods.addOn().send({
+        from: accounts[0],
+        value: web3.utils.toWei("0.002"), // 20min Rs.60
+      });
+      //After Successfull extention run bellow code ...
+      const currtime = this.state.temp;
+      this.setState({
+        total: currtime + 20,
+        temp: currtime + 20,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+    this.setState({ loadingExt: false });
   };
 
   render() {
+    const { loadingExt, loadingOut } = this.state;
     return (
       <div>
-        <p>
-          A Video Call Page{" "}
-          <span style={{ float: "right", marginRight: "50px" }}>
-            Time Remaining - {this.state.temp} Mins
-          </span>
-        </p>
-        <p>Meeting Id - {this.props.match.params.id}</p>
-        <small>Share this meeting ID to join other people this meeting</small>
-
+        <div style={{ margin: "6rem" }}>
+          <div>
+            <h2>Call Connected</h2>
+            <span style={{ float: "right", marginRight: "50px" }}>
+              Time Remaining - {this.state.temp} Mins
+            </span>
+          </div>
+          <p>Meeting Id - {this.props.match.params.id}</p>
+          <small>Share this meeting ID to join other people this meeting</small>
+        </div>
         <div id="video-grid" className="mt-5"></div>
         <div style={{ margin: "50px" }}>
-          <Button id="closebut" floated="right" basic color="red">
+          <Button
+            loading={loadingOut}
+            id="closebut"
+            floated="right"
+            basic
+            color="red"
+          >
             Leave
           </Button>
-          <Button onClick={this.extend} floated="right" basic color="blue">
+          <Button
+            loading={loadingExt}
+            onClick={this.extend}
+            floated="right"
+            basic
+            color="blue"
+          >
             Extend Time
           </Button>
         </div>

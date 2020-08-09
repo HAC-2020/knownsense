@@ -131,9 +131,15 @@ const PatientDashboard = (props) => {
                         </Button>
                       </div>
                       <div id={"joinbtn" + i} style={{ display: "none" }}>
-                        <Button floated="right" basic color="blue">
-                          Join
-                        </Button>
+                        <div>
+                          <Button floated="right" basic color="blue">
+                            Join
+                          </Button>
+                          <p>
+                            PLease wait for some time till transaction
+                            completed.
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </Card.Content>
